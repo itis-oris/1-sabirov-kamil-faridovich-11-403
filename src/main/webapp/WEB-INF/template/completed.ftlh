@@ -1,49 +1,65 @@
-<#import "layout.ftlh" as layout>
-<@layout.layout>
-    <div class="container">
-        <h1>🏁 Завершенные аукционы</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Завершенные аукционы</title>
+    <link rel="stylesheet" type="text/css" href="/Auction/static/css/style.css">
 
-        <#if error??>
-            <div class="error-message">${error}</div>
-        </#if>
-
-        <nav class="page-nav">
-            <a href="${contextPath}/" class="btn">⬅️ Назад к активным аукционам</a>
-        </nav>
-
-        <#if completedAuctions?? && completedAuctions?size gt 0>
-            <div class="plates-grid">
-                <#list completedAuctions as auction>
-                    <div class="plate-card completed">
-                        <div class="status-badge">Завершен</div>
-                        <h3>${auction.number} ${auction.region}</h3>
-                        <p class="description">${auction.description!''}</p>
-
-                        <div class="auction-result">
-                            <p class="final-price">🏆 Финальная цена: <strong>${auction.currentPrice} ₽</strong></p>
-
-                            <#if auction.winnerUsername??>
-                                <p class="winner">👑 Победитель: <strong>${auction.winnerUsername}</strong></p>
-                                <#if auction.winningAmount??>
-                                    <p class="winning-bid">💎 Выигрышная ставка: ${auction.winningAmount} ₽</p>
-                                </#if>
-                            <#else>
-                                <p class="winner">❌ Победителя нет</p>
-                            </#if>
-
-                            <p class="end-date">⏰ Завершен: ${auction.endDate?string('dd.MM.yyyy HH:mm')}</p>
-                        </div>
-
-                        <a href="${contextPath}/plate/${auction.id}" class="btn btn-secondary">Посмотреть историю</a>
-                    </div>
-                </#list>
-            </div>
-        <#else>
-            <div class="empty-state">
-                <h2>📭 Нет завершенных аукционов</h2>
-                <p>Здесь появятся лоты, время торгов по которым истекло.</p>
-                <a href="${contextPath}/" class="btn btn-primary">Перейти к активным аукционам</a>
-            </div>
-        </#if>
+</head>
+<body>
+<div class="header">
+    <div>
+        <h1>Аукцион завершенные</h1>
     </div>
-</@layout.layout>
+    <div>
+        <a href="/Auction/" class="btn btn-secondary">На главную</a>
+    </div>
+</div>
+
+<div class="content">
+    <h1>Завершенные аукционы</h1>
+
+    <#if completedAuctions?? && completedAuctions?size gt 0>
+        <div class="plates-grid">
+            <#list completedAuctions as auction>
+                <div class="plate-card">
+                    <div class="status-badge">Завершен</div>
+                    <h3>${auction.number} ${auction.region}</h3>
+                    <p>${auction.description!''}</p>
+
+                    <div class="auction-result">
+                        <p class="final-price">🏆 Финальная цена: <strong>${auction.currentPrice} ₽</strong></p>
+
+                        <#if auction.winnerUsername??>
+                            <p class="winner">👑 Победитель: <strong>${auction.winnerUsername}</strong></p>
+                            <#if auction.winningAmount??>
+                                <p>💎 Выигрышная ставка: ${auction.winningAmount} ₽</p>
+                            </#if>
+                        <#else>
+                            <p class="winner">❌ Победителя нет</p>
+                        </#if>
+
+                        <p class="end-date">
+                            ⏰ Завершен <span class="date-format" data-date="${auction.endDate}">${auction.endDate}</span>
+                        </p>
+                    </div>
+
+                    <a href="/Auction/plate/${auction.id}" class="btn btn-secondary">Посмотреть историю</a>
+                </div>
+            </#list>
+        </div>
+    <#else>
+        <div class="empty-state">
+            <h2>📭 Нет завершенных аукционов</h2>
+            <p>Здесь появятся лоты, время торгов по которым истекло.</p>
+            <a href="/Auction/" class="btn btn-success">Перейти к активным аукционам</a>
+        </div>
+    </#if>
+</div>
+
+<div class="footer">
+    <p>© 2025 Аукцион автомобильных номеров. Все права защищены.</p>
+</div>
+<script src="/Auction/static/js/main.js"></script>
+</body>
+</html>

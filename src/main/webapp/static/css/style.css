@@ -1,39 +1,53 @@
+
 .header {
     background: linear-gradient(135deg, #2c3e50, #3498db);
     color: white;
     padding: 2rem 0;
     text-align: center;
 }
+
+/* Основной контент */
 .content {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 1rem;
     min-height: 60vh;
 }
-.plates-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+
+.content-narrow {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    min-height: 60vh;
 }
-.plate-card {
+
+.content-wide {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    min-height: 60vh;
+}
+
+/* Карточки и секции */
+.section,
+.create-lot-section,
+.edit-lot-section,
+.lot-info,
+.bid-section,
+.bid-history,
+.profile-info,
+.user-bids,
+.user-lots {
+    max-width: 600px;
     background: white;
     border: 1px solid #e1e8ed;
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 2rem;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin: 0 auto 2rem auto;
 }
-.price {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #e74c3c;
-    margin: 1rem 0;
-}
-.end-date {
-    color: #95a5a6;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-}
+
+/* Кнопки */
 .btn {
     display: inline-block;
     background: #3498db;
@@ -45,20 +59,351 @@
     cursor: pointer;
     font-size: 1rem;
     font-weight: 500;
+    transition: background-color 0.3s, transform 0.2s;
 }
-.btn-secondary {
-    background: #95a5a6;
+
+.btn:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
 }
+
+.btn:active {
+    transform: translateY(0);
+}
+
 .btn-success {
     background: #27ae60;
 }
-.footer {
-    background: #34495e;
-    color: white;
-    text-align: center;
-    padding: 2rem;
-    margin-top: 4rem;
+
+.btn-success:hover {
+    background: #219a52;
 }
+
+.btn-warning {
+    background: #f39c12;
+}
+
+.btn-warning:hover {
+    background: #e67e22;
+}
+
+.btn-danger {
+    background: #e74c3c;
+}
+
+.btn-danger:hover {
+    background: #c0392b;
+}
+
+.btn-secondary {
+    background: #95a5a6;
+}
+
+.btn-secondary:hover {
+    background: #7f8c8d;
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* Группы кнопок */
+.btn-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-group-center {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+/* Формы */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.form-group input,
+.form-group textarea,
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e1e8ed;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.form-group input:valid {
+    border-color: #27ae60;
+}
+
+.form-group input:invalid {
+    border-color: #e74c3c;
+}
+
+.input-hint {
+    font-size: 0.8rem;
+    color: #95a5a6;
+    margin-top: 0.25rem;
+}
+
+/* Сетка для карточек */
+.plates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.plate-card {
+    background: white;
+    border: 1px solid #e1e8ed;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.plate-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+/* Бейджи статусов */
+.status-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #95a5a6;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.status-badge-active {
+    background: #27ae60;
+}
+
+.status-badge-completed {
+    background: #e74c3c;
+}
+
+/* Цены и финансовые элементы */
+.price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #e74c3c;
+    margin: 1rem 0;
+}
+
+.current-price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #e74c3c;
+    text-align: center;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #e74c3c;
+}
+
+.final-price {
+    font-size: 1.2rem;
+    color: #27ae60;
+    margin-bottom: 0.5rem;
+}
+
+.bid-amount, .lot-price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+/* Информационные блоки */
+.price-info {
+    display: flex;
+    justify-content: space-around;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.price-item {
+    text-align: center;
+}
+
+.price-label {
+    font-size: 0.9rem;
+    color: #95a5a6;
+    margin-bottom: 0.5rem;
+}
+
+.price-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.auction-result {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+}
+
+.current-info {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+}
+
+/* Элементы списков */
+.bid-item, .lot-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e1e8ed;
+    transition: background-color 0.3s;
+}
+
+.bid-item:hover, .lot-item:hover {
+    background: #f8f9fa;
+}
+
+.bid-item:last-child, .lot-item:last-child {
+    border-bottom: none;
+}
+
+.bid-info, .lot-info-inline {
+    flex-grow: 1;
+    margin-left: 1.5rem;
+}
+
+.bid-lot, .lot-title {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.bid-user, .winner {
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.bid-time, .lot-end-date, .end-date {
+    color: #95a5a6;
+    font-size: 0.9rem;
+}
+
+.end-date-highlight {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #e74c3c;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #fff3cd;
+    border-radius: 8px;
+    border: 2px solid #ffeaa7;
+}
+
+/* Заголовки страниц */
+.create-header, .edit-header, .profile-header, .plate-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f8f9fa;
+}
+
+.create-title, .edit-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.username {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.plate-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+/* Статистика */
+.user-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.stat-card {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    border-left: 4px solid #3498db;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: #95a5a6;
+    font-size: 0.9rem;
+}
+
+/* Действия */
+.lot-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Сообщения */
 .error-message {
     background: #f8d7da;
     color: #721c24;
@@ -66,4 +411,102 @@
     border-radius: 6px;
     margin-bottom: 1rem;
     border-left: 4px solid #dc3545;
+}
+
+.success-message {
+    background: #d1edff;
+    color: #0c5460;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border-left: 4px solid #3498db;
+}
+
+/* Пустые состояния */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    color: #95a5a6;
+}
+
+.empty-state h3 {
+    color: #7f8c8d;
+    margin-bottom: 1rem;
+}
+
+/* Футер */
+.footer {
+    background: #34495e;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+/* Утилиты */
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+.p-1 { padding: 0.5rem; }
+.p-2 { padding: 1rem; }
+.p-3 { padding: 1.5rem; }
+.p-4 { padding: 2rem; }
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .content, .content-narrow, .content-wide {
+        margin: 1rem auto;
+        padding: 0 0.5rem;
+    }
+
+    .plates-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .btn-group {
+        flex-direction: column;
+    }
+
+    .price-info {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .bid-item, .lot-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .lot-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .user-stats {
+        grid-template-columns: 1fr;
+    }
 }

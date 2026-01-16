@@ -1,11 +1,8 @@
 package ru.itis.dis403.auction.controller;
 
-import jakarta.servlet.ServletException;
+import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 import ru.itis.dis403.auction.model.User;
 import ru.itis.dis403.auction.service.UserService;
 
@@ -14,13 +11,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 @WebServlet("/register")
-public class RegistrationServlet extends HttpServlet {
-
+public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("error", request.getParameter("error"));
-        request.getRequestDispatcher("/WEB-INF/templates/pages/register.ftlh").forward(request, response);
+        request.getRequestDispatcher("/register.ftlh").forward(request, response);
     }
 
     @Override
@@ -47,17 +43,17 @@ public class RegistrationServlet extends HttpServlet {
 
                 session = req.getSession(true);
                 session.setAttribute("user", user);
-                resource = "/";
+                resource = "/Auction";
 
             } else {
-                resource = "/";
+                resource = "/Auction";
             }
         } catch (IllegalArgumentException | SecurityException e) {
             error = URLEncoder.encode(e.getMessage(), "UTF-8");
-            resource = "/register?error=" + error;
+            resource = "/Auction/register?error=" + error;
         } catch (Exception e) {
             error = URLEncoder.encode("Ошибка регистрации", "UTF-8");
-            resource = "/register?error=" + error;
+            resource = "/Auction/register?error=" + error;
         }
         return resource;
     }
