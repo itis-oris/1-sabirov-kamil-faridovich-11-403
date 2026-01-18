@@ -24,6 +24,7 @@ public class ProfileServlet extends HttpServlet {
         BidService bidService = (BidService) getServletContext().getAttribute("bidService");
         LicensePlateService plateService = (LicensePlateService) getServletContext().getAttribute("plateService");
 
+        req.setAttribute("contextPath", req.getContextPath());
         req.setAttribute("userBids", bidService.getUserBids(user.getId()));
         req.setAttribute("userLots", plateService.getUserLots(user.getId()));
 

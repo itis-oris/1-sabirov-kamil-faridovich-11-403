@@ -31,7 +31,7 @@ public class EditLotServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("user") == null) {
-            response.sendRedirect("/Auction/login?error=Для редактирования необходимо авторизоваться");
+            response.sendRedirect(request.getContextPath() + "/login?error=Для редактирования необходимо авторизоваться");
             return;
         }
 
@@ -42,16 +42,17 @@ public class EditLotServlet extends HttpServlet {
             LicensePlate plate = plateService.getPlateById(plateId);
 
             if (plate == null || !plate.getUserCreatorId().equals(user.getId())) {
-                response.sendRedirect("/Auction/profile?error=Лот не найден или у вас нет прав для редактирования");
+                response.sendRedirect(request.getContextPath() + "/profile?error=Лот не найден или у вас нет прав для редактирования");
                 return;
             }
 
+            request.setAttribute("contextPath", request.getContextPath());
             request.setAttribute("plate", plate);
             request.setAttribute("error", request.getParameter("error"));
             request.getRequestDispatcher("/edit-lot.ftlh").forward(request, response);
 
         } catch (Exception e) {
-            response.sendRedirect("/Auction/profile?error=Ошибка при загрузке лота");
+            response.sendRedirect(request.getContextPath() + "/profile?error=Ошибка при загрузке лота");
         }
     }
 
@@ -63,7 +64,7 @@ public class EditLotServlet extends HttpServlet {
 
     private String updateLot(HttpServletRequest request) throws UnsupportedEncodingException {
         HttpSession session = request.getSession(false);
-        String resource = "/Auction/profile";
+        String resource = request.getContextPath() + "/profile";
         String error;
 
         try {
@@ -88,16 +89,16 @@ public class EditLotServlet extends HttpServlet {
             plateService.updatePlate(plate);
 
             session.setAttribute("successMessage", "Лот успешно обновлен");
-            resource = "/Auction/profile";
+            resource = request.getContextPath() + "/profile";
 
         } catch (IllegalArgumentException e) {
             error = URLEncoder.encode(e.getMessage(), "UTF-8");
             int plateId = Integer.parseInt(request.getParameter("plateId"));
-            return "/Auction/edit-lot?id=" + plateId + "&error=" + error;
+            return request.getContextPath() + "/edit-lot?id=" + plateId + "&error=" + error;
         } catch (Exception e) {
             error = URLEncoder.encode("Ошибка при обновлении лота", "UTF-8");
             int plateId = Integer.parseInt(request.getParameter("plateId"));
-            return "/Auction/edit-lot?id=" + plateId + "&error=" + error;
+            return request.getContextPath() + "/edit-lot?id=" + plateId + "&error=" + error;
         }
 
         return resource;

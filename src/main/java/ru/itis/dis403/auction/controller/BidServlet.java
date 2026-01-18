@@ -24,7 +24,6 @@ public class BidServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         bidService = (BidService) getServletContext().getAttribute("bidService");
-        System.out.println("CompletedPlatesServlet init");
     }
 
     @Override

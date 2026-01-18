@@ -15,6 +15,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("contextPath", request.getContextPath());
         request.setAttribute("error", request.getParameter("error"));
         request.getRequestDispatcher("/register.ftlh").forward(request, response);
     }
@@ -43,17 +44,17 @@ public class RegisterServlet extends HttpServlet {
 
                 session = req.getSession(true);
                 session.setAttribute("user", user);
-                resource = "/Auction";
+                resource = req.getContextPath();
 
             } else {
-                resource = "/Auction";
+                resource = req.getContextPath();
             }
         } catch (IllegalArgumentException | SecurityException e) {
             error = URLEncoder.encode(e.getMessage(), "UTF-8");
-            resource = "/Auction/register?error=" + error;
+            resource = req.getContextPath() + "/register?error=" + error;
         } catch (Exception e) {
             error = URLEncoder.encode("Ошибка регистрации", "UTF-8");
-            resource = "/Auction/register?error=" + error;
+            resource = req.getContextPath() + "/register?error=" + error;
         }
         return resource;
     }

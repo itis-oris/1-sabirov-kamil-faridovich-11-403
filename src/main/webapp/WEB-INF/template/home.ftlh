@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Аукцион автомобильных номеров</title>
-    <link rel="stylesheet" type="text/css" href="/Auction/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/static/css/style.css">
 
 </head>
 <body>
@@ -14,13 +14,13 @@
     <div>
         <#if user??>
             <span>Привет, ${user.username}!</span>
-            <a href="/Auction/profile" class="btn">Профиль</a>
-            <form action="/Auction/logout" method="post" style="display: inline;">
+            <a href="${contextPath}/profile" class="btn">Профиль</a>
+            <form action="${contextPath}/logout" method="post" style="display: inline;">
                 <button type="submit" class="btn btn-secondary">Выйти</button>
             </form>
         <#else>
-            <a href="/Auction/login" class="btn">Войти</a>
-            <a href="/Auction/register" class="btn btn-success">Регистрация</a>
+            <a href="${contextPath}/login" class="btn">Войти</a>
+            <a href="${contextPath}/register" class="btn btn-success">Регистрация</a>
         </#if>
     </div>
 </div>
@@ -44,7 +44,7 @@
                     <p class="end-date">
                         До <span class="date-format" data-date="${plate.endDate}">${plate.endDate}</span>
                     </p>
-                    <a href="/Auction/plate/${plate.id}" class="btn">Сделать ставку</a>
+                    <a href="${contextPath}/plate/${plate.id}" class="btn">Сделать ставку</a>
                 </div>
             </#list>
         </div>
@@ -53,14 +53,14 @@
     </#if>
 
     <div style="margin-top: 2rem; text-align: center;">
-        <a href="/Auction/create-lot" class="btn btn-success">➕ Создать лот</a>
-        <a href="/Auction/completed" class="btn btn-secondary">🏁 Завершенные аукционы</a>
+        <a href="${contextPath}/create-lot" class="btn btn-success">➕ Создать лот</a>
+        <a href="${contextPath}/completed" class="btn btn-secondary">🏁 Завершенные аукционы</a>
     </div>
 </div>
 
 <div class="footer">
     <p>© 2025 Аукцион автомобильных номеров. Все права защищены.</p>
 </div>
-<script src="/Auction/static/js/main.js"></script>
+<script src="${contextPath}/static/js/main.js"></script>
 </body>
 </html>

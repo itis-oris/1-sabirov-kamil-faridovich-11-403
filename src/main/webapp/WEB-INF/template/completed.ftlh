@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Завершенные аукционы</title>
-    <link rel="stylesheet" type="text/css" href="/Auction/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/static/css/style.css">
 
 </head>
 <body>
@@ -12,7 +12,7 @@
         <h1>Аукцион завершенные</h1>
     </div>
     <div>
-        <a href="/Auction/" class="btn btn-secondary">На главную</a>
+        <a href="${contextPath}/" class="btn btn-secondary">На главную</a>
     </div>
 </div>
 
@@ -44,7 +44,7 @@
                         </p>
                     </div>
 
-                    <a href="/Auction/plate/${auction.id}" class="btn btn-secondary">Посмотреть историю</a>
+                    <a href="${contextPath}/plate/${auction.id}" class="btn btn-secondary">Посмотреть историю</a>
                 </div>
             </#list>
         </div>
@@ -52,7 +52,7 @@
         <div class="empty-state">
             <h2>📭 Нет завершенных аукционов</h2>
             <p>Здесь появятся лоты, время торгов по которым истекло.</p>
-            <a href="/Auction/" class="btn btn-success">Перейти к активным аукционам</a>
+            <a href="${contextPath}/" class="btn btn-success">Перейти к активным аукционам</a>
         </div>
     </#if>
 </div>
@@ -60,6 +60,6 @@
 <div class="footer">
     <p>© 2025 Аукцион автомобильных номеров. Все права защищены.</p>
 </div>
-<script src="/Auction/static/js/main.js"></script>
+<script src="${contextPath}/static/js/main.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Вход</title>
-    <link rel="stylesheet" type="text/css" href="/Auction/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/static/css/style.css">
 
 </head>
 <body>
@@ -12,7 +12,7 @@
         <h1>Аукцион автомобильных номеров</h1>
     </div>
     <div>
-        <a href="/Auction/" class="btn btn-secondary">На главную</a>
+        <a href="${contextPath}/" class="btn btn-secondary">На главную</a>
     </div>
 </div>
 
@@ -24,7 +24,7 @@
             <div class="error-message">${error}</div>
         </#if>
 
-        <form action="/Auction/login" method="post">
+        <form action="${contextPath}/login" method="post">
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required value="${email!''}">
@@ -37,12 +37,12 @@
 
             <div class="btn-group">
                 <button type="submit" class="btn btn-success">Войти</button>
-                <a href="/Auction/" class="btn btn-secondary">Отмена</a>
+                <a href="${contextPath}/" class="btn btn-secondary">Отмена</a>
             </div>
         </form>
 
         <p style="text-align: center; margin-top: 1rem;">
-            Нет аккаунта? <a href="/Auction/register">Зарегистрируйтесь</a>
+            Нет аккаунта? <a href="${contextPath}/register">Зарегистрируйтесь</a>
         </p>
     </div>
 </div>

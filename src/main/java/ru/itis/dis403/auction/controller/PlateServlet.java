@@ -29,6 +29,7 @@ public class PlateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("contextPath", request.getContextPath());
         showPlatePage(request, response);
     }
 
@@ -47,6 +48,7 @@ public class PlateServlet extends HttpServlet {
             LicensePlate plate = plateService.getPlateById(plateId);
             List<Bid> bids = bidService.getBidHistoryForPlate(plateId);
 
+            request.setAttribute("contextPath", request.getContextPath());
             request.setAttribute("plate", plate);
             request.setAttribute("bids", bids);
 

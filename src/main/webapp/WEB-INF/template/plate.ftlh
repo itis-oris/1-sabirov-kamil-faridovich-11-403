@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Лот ${plate.number} ${plate.region} - Аукцион автомобильных номеров</title>
-    <link rel="stylesheet" type="text/css" href="/Auction/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/static/css/style.css">
 
 </head>
 <body>
@@ -14,15 +14,15 @@
     <div>
         <#if user??>
             <span>Привет, ${user.username}!</span>
-            <a href="/Auction/profile" class="btn">Профиль</a>
-            <form action="/Auction/logout" method="post" style="display: inline;">
+            <a href="${contextPath}/profile" class="btn">Профиль</a>
+            <form action="${contextPath}/logout" method="post" style="display: inline;">
                 <button type="submit" class="btn btn-secondary">Выйти</button>
             </form>
         <#else>
-            <a href="/Auction/login" class="btn">Войти</a>
-            <a href="/Auction/register" class="btn btn-success">Регистрация</a>
+            <a href="${contextPath}/login" class="btn">Войти</a>
+            <a href="${contextPath}/register" class="btn btn-success">Регистрация</a>
         </#if>
-        <a href="/Auction/" class="btn btn-secondary">На главную</a>
+        <a href="${contextPath}/" class="btn btn-secondary">На главную</a>
     </div>
 </div>
 
@@ -66,7 +66,7 @@
     <div class="bid-section">
         <h3>Сделать ставку</h3>
         <#if user??>
-            <form action="/Auction/plate/${plate.id}" method="post">
+            <form action="${contextPath}/plate/${plate.id}" method="post">
                 <input type="hidden" name="plateId" value="${plate.id}">
 
                 <div class="form-group">
@@ -87,14 +87,14 @@
                     <button type="submit" class="btn btn-success" style="font-size: 1.1rem; padding: 1rem 2rem;">
                         📨 Разместить ставку
                     </button>
-                    <a href="/Auction/" class="btn btn-secondary">← Назад к списку</a>
+                    <a href="${contextPath}/" class="btn btn-secondary">← Назад к списку</a>
                 </div>
             </form>
         <#else>
             <div style="text-align: center; padding: 2rem;">
                 <p style="font-size: 1.1rem; margin-bottom: 1rem;">Для участия в аукционе необходимо авторизоваться</p>
-                <a href="/Auction/login" class="btn" style="margin-right: 1rem;">Войти</a>
-                <a href="/Auction/register" class="btn btn-success">Регистрация</a>
+                <a href="${contextPath}/login" class="btn" style="margin-right: 1rem;">Войти</a>
+                <a href="${contextPath}/register" class="btn btn-success">Регистрация</a>
             </div>
         </#if>
     </div>
@@ -131,7 +131,7 @@
     <p>© 2025 Аукцион автомобильных номеров. Все права защищены.</p>
 </div>
 
-<script src="/Auction/static/js/main.js"></script>
+<script src="${contextPath}/static/js/main.js"></script>
 
 </body>
 </html>

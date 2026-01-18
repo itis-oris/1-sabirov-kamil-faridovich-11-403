@@ -16,6 +16,7 @@ import java.util.List;
 @WebServlet(value = {"", "/home"})
 public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("contextPath", req.getContextPath());
         HttpSession session = req.getSession(false);
         if (session != null) {
             req.setAttribute("user", session.getAttribute("user"));

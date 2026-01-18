@@ -22,6 +22,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("contextPath", request.getContextPath());
         request.setAttribute("error", request.getParameter("error"));
         request.getRequestDispatcher("/login.ftlh").forward(request, response);
     }
@@ -34,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 
     private String login(HttpServletRequest req) throws UnsupportedEncodingException {
         HttpSession session = req.getSession(false);
-        String resource = "/Auction/";
+        String resource = req.getContextPath() + "/";
         String error;
 
         try {
@@ -47,15 +48,15 @@ public class LoginServlet extends HttpServlet {
                 if (user != null) {
                     session = req.getSession(true);
                     session.setAttribute("user", user);
-                    resource = "/Auction/";
+                    resource = req.getContextPath() + "/";
                 } else {
                     error = URLEncoder.encode("Неверный email или пароль", "UTF-8");
-                    resource = "/Auction/login?error=" + error;
+                    resource = req.getContextPath() + "/login?error=" + error;
                 }
             }
         } catch (Exception e) {
             error = URLEncoder.encode("Ошибка авторизации", "UTF-8");
-            resource = "/Auction/login?error=" + error;
+            resource = req.getContextPath() + "/login?error=" + error;
         }
         return resource;
     }

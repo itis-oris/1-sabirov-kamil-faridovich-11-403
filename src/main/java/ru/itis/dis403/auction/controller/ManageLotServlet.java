@@ -31,7 +31,7 @@ public class ManageLotServlet extends HttpServlet {
 
     private String manageLot(HttpServletRequest req) throws UnsupportedEncodingException {
         HttpSession session = req.getSession(false);
-        String resource = "/Auction/profile";
+        String resource = req.getContextPath() + "/profile";
         String error;
 
         try {

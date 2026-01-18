@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Профиль пользователя - Аукцион автомобильных номеров</title>
-    <link rel="stylesheet" type="text/css" href="/Auction/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/static/css/style.css">
 
 </head>
 <body>
@@ -13,11 +13,11 @@
     </div>
     <div>
         <span>Привет, ${user.username}!</span>
-        <a href="/Auction/profile" class="btn">Профиль</a>
-            <form action="/Auction/logout" method="post" style="display: inline;">
+        <a href="${contextPath}/profile" class="btn">Профиль</a>
+            <form action="${contextPath}/logout" method="post" style="display: inline;">
                 <button type="submit" class="btn btn-secondary">Выйти</button>
             </form>
-        <a href="/Auction/" class="btn btn-secondary">На главную</a>
+        <a href="${contextPath}/" class="btn btn-secondary">На главную</a>
     </div>
 </div>
 
@@ -78,14 +78,14 @@
                         </#if>
                     </div>
                     <div class="lot-actions">
-                        <a href="/Auction/plate/${lot.id}" class="btn">👁️ Просмотр</a>
-                        <a href="/Auction/edit-lot?id=${lot.id}" class="btn btn-warning">✏️ Редактировать</a>
-                        <form action="/Auction/manage-lot" method="post" style="display: inline;">
+                        <a href="${contextPath}/plate/${lot.id}" class="btn">👁️ Просмотр</a>
+                        <a href="${contextPath}/edit-lot?id=${lot.id}" class="btn btn-warning">✏️ Редактировать</a>
+                        <form action="${contextPath}/manage-lot" method="post" style="display: inline;">
                             <input type="hidden" name="plateId" value="${lot.id}">
                             <input type="hidden" name="action" value="extend">
                             <button type="submit" class="btn btn-success">⏰ Продлить</button>
                         </form>
-                        <form action="/Auction/manage-lot" method="post" style="display: inline;">
+                        <form action="${contextPath}/manage-lot" method="post" style="display: inline;">
                             <input type="hidden" name="plateId" value="${lot.id}">
                             <input type="hidden" name="action" value="delete">
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Удалить лот?')">🗑️ Удалить</button>
@@ -97,7 +97,7 @@
             <div class="empty-state">
                 <h3>📦 Лотов пока нет</h3>
                 <p>Вы еще не создали ни одного лота</p>
-                <a href="/Auction/create-lot" class="btn btn-success" style="margin-top: 1rem;">
+                <a href="${contextPath}/create-lot" class="btn btn-success" style="margin-top: 1rem;">
                     ➕ Создать первый лот
                 </a>
             </div>
@@ -117,14 +117,14 @@
                             <span class="date-format" data-date="${bid.timestamp}">${bid.timestamp}</span>
                         </div>
                     </div>
-                    <a href="/Auction/plate/${bid.plateId}" class="btn">Перейти к лоту</a>
+                    <a href="${contextPath}/plate/${bid.plateId}" class="btn">Перейти к лоту</a>
                 </div>
             </#list>
         <#else>
             <div class="empty-state">
                 <h3>🤔 Ставок пока нет</h3>
                 <p>Вы еще не участвовали в аукционах</p>
-                <a href="/Auction/" class="btn btn-success" style="margin-top: 1rem;">
+                <a href="${contextPath}/" class="btn btn-success" style="margin-top: 1rem;">
                     🚀 Найти лоты для ставок
                 </a>
             </div>
@@ -132,7 +132,7 @@
     </div>
 
     <div style="text-align: center; margin-top: 2rem;">
-        <a href="/Auction/" class="btn btn-secondary">← Назад к списку аукционов</a>
+        <a href="${contextPath}/" class="btn btn-secondary">← Назад к списку аукционов</a>
     </div>
 </div>
 
@@ -140,7 +140,7 @@
     <p>© 2025 Аукцион автомобильных номеров. Все права защищены.</p>
 </div>
 
-<script src="/Auction/static/js/main.js"></script>
+<script src="${contextPath}/static/js/main.js"></script>
 
 </body>
 </html>

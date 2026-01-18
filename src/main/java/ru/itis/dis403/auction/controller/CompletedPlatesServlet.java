@@ -18,7 +18,6 @@ public class CompletedPlatesServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         bidService = (BidService) getServletContext().getAttribute("bidService");
-        System.out.println("CompletedPlatesServlet init");
     }
 
     @Override
@@ -29,6 +28,7 @@ public class CompletedPlatesServlet extends HttpServlet {
             List<CompletedAuction> completedAuctions = bidService.getCompletedAuctions();
             request.setAttribute("completedAuctions", completedAuctions);
             request.setAttribute("title", "Завершенные аукционы");
+            request.setAttribute("contextPath", request.getContextPath());
 
         } catch (Exception e) {
             e.printStackTrace();

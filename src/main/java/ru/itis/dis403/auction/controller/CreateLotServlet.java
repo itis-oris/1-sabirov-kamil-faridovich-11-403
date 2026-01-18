@@ -27,6 +27,7 @@ public class CreateLotServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("contextPath", request.getContextPath());
         request.setAttribute("error", request.getParameter("error"));
         request.getRequestDispatcher("/create-lot.ftlh").forward(request, response);
     }
@@ -62,18 +63,18 @@ public class CreateLotServlet extends HttpServlet {
 
             plateService.createPlate(plate);
 
-            resource = "/Auction/?success=" +
+            resource = req.getContextPath() + "/?success=" +
                     URLEncoder.encode("Лот успешно создан!", "UTF-8");
 
         } catch (NumberFormatException e) {
             error = URLEncoder.encode("Неверный формат цены", "UTF-8");
-            resource = "/Auction/create-lot?error=" + error;
+            resource = req.getContextPath() + "/create-lot?error=" + error;
         } catch (IllegalArgumentException e) {
             error = URLEncoder.encode(e.getMessage(), "UTF-8");
-            resource = "/Auction/create-lot?error=" + error;
+            resource = req.getContextPath() + "/create-lot?error=" + error;
         } catch (Exception e) {
             error = URLEncoder.encode("Ошибка при создании лота", "UTF-8");
-            resource = "/Auction/create-lot?error=" + error;
+            resource = req.getContextPath() + "/create-lot?error=" + error;
         }
 
         return resource;
